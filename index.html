@@ -82,7 +82,7 @@
             pointer-events: none;
         }
 
-        /* Typography Helper Classes */
+        /* Typography Helpers */
         .gradient-text {
             background: linear-gradient(135deg, #a5b4fc 0%, #38bdf8 50%, #c084fc 100%);
             -webkit-background-clip: text;
@@ -272,14 +272,7 @@
             transform: translateY(-2px);
         }
 
-        /* Grid Layouts for Sections */
-        .section-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
+        /* Card System */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -296,7 +289,7 @@
             box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4);
         }
 
-        /* Education Card */
+        /* Education */
         .edu-card {
             display: flex;
             flex-direction: column;
@@ -349,9 +342,12 @@
             color: var(--text-muted);
         }
 
-        /* Experience Timeline Card */
-        .timeline-card {
-            margin-bottom: 1.25rem;
+        /* Experience */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
         }
 
         .timeline-header {
@@ -360,6 +356,7 @@
             align-items: flex-start;
             margin-bottom: 0.5rem;
             flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .role-title {
@@ -402,7 +399,7 @@
             font-size: 1rem;
         }
 
-        /* Projects Section */
+        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -438,11 +435,6 @@
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-main);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 0.75rem;
         }
 
         .project-btn {
@@ -491,27 +483,25 @@
             border: 1px solid rgba(99, 102, 241, 0.2);
         }
 
-        .demo-trigger-btn {
-            width: 100%;
-            padding: 0.6rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+        /* Skills & Leadership Grid */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
-        .demo-trigger-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: #ffffff;
+        .skills-group {
+            margin-bottom: 1rem;
+        }
+
+        .skills-group-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Responsive Breakpoints */
@@ -558,6 +548,7 @@
                 <li><a href="#education">Education</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
             </ul>
         </nav>
 
@@ -609,7 +600,7 @@
                     </div>
                 </div>
                 <div>
-                    <strong style="font-size: 0.85rem; color: var(--text-muted);">Honors & Honors Societies:</strong>
+                    <strong style="font-size: 0.85rem; color: var(--text-muted);">Honors & Societies:</strong>
                     <span style="font-size: 0.85rem; color: var(--text-main);"> Dean’s List</span>
                 </div>
                 <div>
@@ -626,6 +617,42 @@
             </div>
         </section>
 
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experience</h2>
+            <div class="timeline">
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="role-title">Research & Data Analyst Assistant</div>
+                            <div class="company-name">Rutgers Academic Research</div>
+                        </div>
+                        <div class="duration-text">Sep 2024 – Present</div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li>Analyzed quantitative dataset using Python and SQL to extract actionable insights for faculty research projects.</li>
+                        <li>Built custom visualization dashboards to present key statistical trends to university stakeholders.</li>
+                        <li>Collaborated with team members to refine data cleaning pipelines and improve data accuracy by 15%.</li>
+                    </ul>
+                </div>
+
+                <div class="card timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="role-title">Finance & Operations Intern</div>
+                            <div class="company-name">Financial Services Firm</div>
+                        </div>
+                        <div class="duration-text">Jun 2024 – Aug 2024</div>
+                    </div>
+                    <ul class="bullet-list">
+                        <li>Assisted with financial modeling and trend analysis to support quarterly forecasting reports.</li>
+                        <li>Streamlined spreadsheet workflows in Microsoft Excel, reducing data reconciliation time.</li>
+                        <li>Prepared executive summaries highlighting key performance indicators and revenue drivers.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section id="projects">
             <h2 class="section-title"><i class="fa-solid fa-code"></i> Featured Projects</h2>
@@ -636,8 +663,8 @@
                     <div>
                         <div class="project-header">
                             <div class="project-title">Todo List Application</div>
-                            <div class="project-links">
-                                <a href="https://github.com/heershah11/todo-list" target="_blank" class="project-btn" title="GitHub Repository">
+                            <div>
+                                <a href="https://github.com/heershah11/todo-list" target="_blank" class="project-btn">
                                     <i class="fa-brands fa-github"></i> GitHub Repo
                                 </a>
                             </div>
@@ -652,9 +679,6 @@
                             <span class="tech-pill">HTML/CSS</span>
                         </div>
                     </div>
-                    <button class="demo-trigger-btn" onclick="openModal('todoModal')">
-                        <i class="fa-solid fa-play"></i> Launch Interactive Demo
-                    </button>
                 </div>
 
                 <!-- Project 2 -->
@@ -662,8 +686,8 @@
                     <div>
                         <div class="project-header">
                             <div class="project-title">Speed Typing Test</div>
-                            <div class="project-links">
-                                <a href="https://github.com/heershah11/speed-typing" target="_blank" class="project-btn" title="GitHub Repository">
+                            <div>
+                                <a href="https://github.com/heershah11/speed-typing" target="_blank" class="project-btn">
                                     <i class="fa-brands fa-github"></i> GitHub Repo
                                 </a>
                             </div>
@@ -677,12 +701,76 @@
                             <span class="tech-pill">DOM Analytics</span>
                         </div>
                     </div>
-                    <button class="demo-trigger-btn" onclick="openModal('typingModal')">
-                        <i class="fa-solid fa-gauge-high"></i> Launch Interactive Demo
-                    </button>
                 </div>
             </div>
         </section>
+
+        <!-- Skills & Leadership Section -->
+        <section id="skills">
+            <div class="two-col-grid">
+                <!-- Technical Skills -->
+                <div class="card">
+                    <h3 class="section-title" style="font-size: 1.3rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-laptop-code"></i> Skills & Tools
+                    </h3>
+                    
+                    <div class="skills-group">
+                        <div class="skills-group-title">Financial & Business</div>
+                        <div class="coursework-tags">
+                            <span class="tag">Financial Modeling</span>
+                            <span class="tag">Market Research</span>
+                            <span class="tag">Data Analysis</span>
+                            <span class="tag">Forecasting</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-group" style="margin-top: 1.25rem;">
+                        <div class="skills-group-title">Technical & Programming</div>
+                        <div class="coursework-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Git / GitHub</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-group" style="margin-top: 1.25rem;">
+                        <div class="skills-group-title">Software & Productivity</div>
+                        <div class="coursework-tags">
+                            <span class="tag">Microsoft Excel (Advanced)</span>
+                            <span class="tag">PowerPoint</span>
+                            <span class="tag">Tableau</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leadership & Extracurriculars -->
+                <div class="card">
+                    <h3 class="section-title" style="font-size: 1.3rem; margin-bottom: 1rem;">
+                        <i class="fa-solid fa-users"></i> Leadership & Involvement
+                    </h3>
+                    
+                    <div style="margin-bottom: 1.25rem;">
+                        <div style="font-weight: 700; color: var(--text-main);">Rutgers Financial Management Association</div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Active Member</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+                            Participates in workshops on financial modeling, market trends, and networking sessions with industry leaders.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div style="font-weight: 700; color: var(--text-main);">Data Science & Analytics Club</div>
+                        <div style="font-size: 0.85rem; color: var(--secondary);">Member</div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+                            Engages in collaborative data science projects, exploratory data analysis sessions, and Python coding challenges.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 </body>
 </html>
