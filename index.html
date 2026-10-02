@@ -405,7 +405,7 @@ font-size: 1rem;
 /* Projects Section */
 .projects-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 gap: 1.5rem;
 margin-bottom: 3rem;
 }
@@ -435,7 +435,7 @@ margin-bottom: 1rem;
 }
 
 .project-title {
-font-size: 1.25rem;
+font-size: 1.2rem;
 font-weight: 700;
 color: var(--text-main);
 }
@@ -979,7 +979,35 @@ Hi! Finance major and Data Science minor here. I love digging into data, analyzi
     <h2 class="section-title"><i class="fa-solid fa-code"></i> Featured Projects</h2>
     
     <div class="projects-grid">
-        <!-- Project 1: Todo List Application -->
+        <!-- Project 1: Stock Moving Average Analysis -->
+        <div class="project-card">
+            <div>
+                <div class="project-header">
+                    <div class="project-title">Stock Moving Average Analysis</div>
+                    <div class="project-links">
+                        <a href="https://github.com/heershah11/stock-moving-average" target="_blank" class="project-btn" title="GitHub Repository">
+                            <i class="fa-brands fa-github"></i> GitHub Link
+                        </a>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    A Python financial data analysis tool that calculates Simple (SMA) and Exponential Moving Averages (EMA) using historical data from <code style="color: var(--secondary);">yfinance</code>. Detects Golden and Death Cross signals and visualizes market trends with dynamic chart overlays.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-pill">Python 3.8+</span>
+                    <span class="tech-pill">pandas</span>
+                    <span class="tech-pill">numpy</span>
+                    <span class="tech-pill">yfinance</span>
+                    <span class="tech-pill">matplotlib</span>
+                    <span class="tech-pill">seaborn</span>
+                </div>
+            </div>
+            <button class="demo-trigger-btn" onclick="openModal('stockModal')">
+                <i class="fa-solid fa-chart-line"></i> View Analysis Summary
+            </button>
+        </div>
+
+        <!-- Project 2: Todo List Application -->
         <div class="project-card">
             <div>
                 <div class="project-header">
@@ -1005,7 +1033,7 @@ Hi! Finance major and Data Science minor here. I love digging into data, analyzi
             </button>
         </div>
 
-        <!-- Project 2: Speed Typing Test -->
+        <!-- Project 3: Speed Typing Test -->
         <div class="project-card">
             <div>
                 <div class="project-header">
@@ -1084,7 +1112,29 @@ Hi! Finance major and Data Science minor here. I love digging into data, analyzi
 </footer>
 </div>
 
-<!-- MODAL 1: Interactive Todo App -->
+<!-- MODAL 1: Stock Moving Average Overview -->
+<div id="stockModal" class="modal">
+<div class="modal-content">
+<button class="close-modal" onclick="closeModal('stockModal')"><i class="fa-solid fa-xmark"></i></button>
+<h3 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-chart-line" style="color: var(--secondary);"></i> Stock Moving Average Analysis</h3>
+<p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.25rem;">Financial indicator calculation and crossover signal detection workflow.</p>
+
+<div style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+    <p style="margin-bottom: 0.75rem;"><strong style="color: var(--text-main);">Core Functionality:</strong></p>
+    <ul class="bullet-list" style="margin-bottom: 1.25rem;">
+        <li><strong style="color: var(--text-main);">Data Ingestion:</strong> Retrieves real-time and historical stock data directly using <code style="color: var(--secondary);">yfinance</code>.</li>
+        <li><strong style="color: var(--text-main);">Indicators:</strong> Computes SMA (unweighted averages over 20/50/200-day windows) and EMA (exponentially weighted recent price action).</li>
+        <li><strong style="color: var(--text-main);">Crossover Signals:</strong> Flags 🟢 <em>Golden Cross</em> (Bullish entry) and 🔴 <em>Death Cross</em> (Bearish exit) points automatically.</li>
+        <li><strong style="color: var(--text-main);">Visualization:</strong> Renders overlaid price trends with moving average lines using <code style="color: var(--secondary);">matplotlib</code> and <code style="color: var(--secondary);">seaborn</code>.</li>
+    </ul>
+    <a href="https://github.com/heershah11/stock-moving-average" target="_blank" class="demo-trigger-btn" style="text-decoration: none;">
+        <i class="fa-brands fa-github"></i> Open Repository on GitHub
+    </a>
+</div>
+</div>
+</div>
+
+<!-- MODAL 2: Interactive Todo App -->
 <div id="todoModal" class="modal">
 <div class="modal-content">
 <button class="close-modal" onclick="closeModal('todoModal')"><i class="fa-solid fa-xmark"></i></button>
@@ -1116,7 +1166,7 @@ Hi! Finance major and Data Science minor here. I love digging into data, analyzi
 </div>
 </div>
 
-<!-- MODAL 2: Interactive Speed Typing App -->
+<!-- MODAL 3: Interactive Speed Typing App -->
 <div id="typingModal" class="modal">
 <div class="modal-content">
 <button class="close-modal" onclick="closeModal('typingModal')"><i class="fa-solid fa-xmark"></i></button>
