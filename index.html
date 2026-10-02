@@ -1,784 +1,1258 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heer Shah | Finance & Data Science Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <title>Heer Shah | Personal Portfolio & Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            400: '#38bdf8',
-                            500: '#0284c7',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                        },
-                        accent: {
-                            400: '#34d399',
-                            500: '#10b981',
-                            600: '#059669',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        .glass-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: rgba(18, 26, 43, 0.75);
+            --bg-card-hover: rgba(26, 38, 63, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(99, 102, 241, 0.3);
+            
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --secondary: #06b6d4;
+            --accent: #ec4899;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dim: #6b7280;
+            
+            --glow-primary: rgba(99, 102, 241, 0.25);
+            --glow-secondary: rgba(6, 182, 212, 0.25);
+            
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .glass-nav {
-            background: rgba(15, 23, 42, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background: radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.12) 0%, transparent 40%),
+                        var(--bg-dark);
+        }
+
+        /* Ambient Glow Background Effects */
+        .bg-glow-1 {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--glow-primary) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--glow-secondary) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Typography Helper Classes */
         .gradient-text {
-            background: linear-gradient(135deg, #38bdf8 0%, #34d399 100%);
+            background: linear-gradient(135deg, #a5b4fc 0%, #38bdf8 50%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gradient-glow {
-            box-shadow: 0 0 30px -5px rgba(56, 189, 248, 0.2);
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .section-title i {
+            color: var(--primary-light);
+            font-size: 1.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            background: rgba(9, 13, 22, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            padding: 0.75rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        /* Hero / Profile Section */
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .headshot-wrapper {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto;
+        }
+
+        .headshot-glow {
+            position: absolute;
+            inset: -6px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 28px;
+            filter: blur(10px);
+            opacity: 0.6;
+            transition: var(--transition);
+        }
+
+        .headshot-wrapper:hover .headshot-glow {
+            opacity: 0.9;
+            filter: blur(14px);
+        }
+
+        .headshot-img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        .personal-statement {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .contact-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .contact-pill:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: var(--primary-light);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Grid Layouts for Sections */
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-highlight);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Education Card */
+        .edu-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .degree-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .institution {
+            color: var(--primary-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .gpa-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .coursework-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Experience Timeline Card */
+        .timeline-card {
+            margin-bottom: 1.25rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .role-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .company-name {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .duration-text {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.75rem;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .bullet-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+            font-size: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -10px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .project-btn {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-btn:hover {
+            color: #ffffff;
+            background: var(--primary);
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tech-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-light);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .demo-trigger-btn {
+            width: 100%;
+            padding: 0.6rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .demo-trigger-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Interactive Demos (Modals) */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(5, 8, 15, 0.85);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        /* Todo Interactive App */
+        .todo-app-container {
+            margin-top: 1rem;
+        }
+
+        .todo-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .todo-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .todo-input:focus {
+            border-color: var(--primary-light);
+        }
+
+        .todo-add-btn {
+            background: var(--primary);
+            color: #white;
+            border: none;
+            padding: 0 1.25rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .todo-list {
+            list-style: none;
+            max-height: 250px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .todo-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .todo-item.completed span {
+            text-decoration: line-through;
+            color: var(--text-dim);
+        }
+
+        .todo-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .todo-action-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .todo-action-btn:hover {
+            color: var(--primary-light);
+        }
+
+        /* Speed Typing Interactive App */
+        .typing-app-container {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .typing-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-box .val {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-box .lbl {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .word-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            min-height: 80px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            word-wrap: break-word;
+        }
+
+        .typing-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        .restart-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .restart-btn:hover {
+            background: var(--primary-light);
+        }
+
+        /* Skills Matrix */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .skill-pill i {
+            color: var(--primary-light);
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 5rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .hero-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .headshot-wrapper {
+                width: 180px;
+                height: 180px;
+            }
+
+            .contact-pills {
+                justify-content: center;
+            }
+
+            .personal-statement {
+                border-left: none;
+                border-top: 3px solid var(--primary);
+                border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                border-radius: var(--radius-md);
+            }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between">
+<body>
 
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo / Name -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-brand-500/20 transition-transform group-hover:scale-105">
-                        <i class="fa-solid fa-chart-line text-xs"></i>
-                    </div>
-                    <span class="font-bold text-lg tracking-tight text-white">Heer Shah<span class="text-brand-400">.</span></span>
-                </a>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
 
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                    <a href="#about" class="text-slate-300 hover:text-brand-400 transition-colors">About</a>
-                    <a href="#education" class="text-slate-300 hover:text-brand-400 transition-colors">Education</a>
-                    <a href="#experience" class="text-slate-300 hover:text-brand-400 transition-colors">Experience</a>
-                    <a href="#leadership" class="text-slate-300 hover:text-brand-400 transition-colors">Leadership</a>
-                    <a href="#skills" class="text-slate-300 hover:text-brand-400 transition-colors">Skills</a>
-                    <a href="#projects" class="text-slate-300 hover:text-brand-400 transition-colors">Projects</a>
-                    <a href="#contact" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 hover:border-slate-600 transition-all text-xs font-semibold">Contact</a>
-                </nav>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav>
+            <a href="#" class="nav-logo">HS<span style="color: var(--primary-light)">.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills & Activities</a></li>
+            </ul>
+        </nav>
 
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden glass-nav border-b border-slate-800 px-4 pt-2 pb-4 space-y-2">
-            <a href="#about" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">About</a>
-            <a href="#education" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Education</a>
-            <a href="#experience" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Experience</a>
-            <a href="#leadership" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Leadership</a>
-            <a href="#skills" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Skills</a>
-            <a href="#projects" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Projects</a>
-            <a href="#contact" class="block text-brand-400 font-medium text-sm py-1">Contact</a>
-        </div>
-    </header>
-
-    <main class="pt-24 pb-16">
-        <section id="about" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-            <div class="relative z-10 max-w-4xl">
-                <!-- Status Badge -->
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono mb-6">
-                    <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
-                    <span>Rutgers Business School | Finance & Data Science</span>
+        <!-- Hero / Profile Section -->
+        <section id="about">
+            <div class="hero-card">
+                <div class="headshot-wrapper">
+                    <div class="headshot-glow"></div>
+                    <!-- Photo Integration -->
+                    <img src="heerheadshot.png" alt="Heer Shah Headshot" class="headshot-img" onerror="this.onerror=null; this.innerHTML='<div style=\'padding: 1rem;\'><b>Heer Shah</b><br>Headshot (heerheadshot.png)</div>'; this.style.display='flex';">
                 </div>
-
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                    Heer Shah
-                </h1>
-
-                <!-- Contact Pills -->
-                <div class="flex flex-wrap items-center gap-3 mb-8 text-xs font-mono text-slate-300">
-                    <a href="tel:2014230574" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center gap-2 transition-colors">
-                        <i class="fa-solid fa-phone text-brand-400"></i> 201-423-0574
-                    </a>
-                    <a href="mailto:heershah0211@gmail.com" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center gap-2 transition-colors">
-                        <i class="fa-solid fa-envelope text-accent-400"></i> heershah0211@gmail.com
-                    </a>
-                    <a href="https://linkedin.com/in/heershah11" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 flex items-center gap-2 transition-colors">
-                        <i class="fa-brands fa-linkedin text-sky-400"></i> linkedin.com/in/heershah11
-                    </a>
-                </div>
-
-                <!-- Personal Statement Card -->
-                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800/80 gradient-glow relative overflow-hidden">
-                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                    <p class="text-xs font-mono text-brand-400 uppercase tracking-widest mb-2 font-semibold">Personal Statement</p>
-                    <p class="text-lg sm:text-xl text-slate-100 font-medium leading-relaxed">
-                        &ldquo;Hi! I am a Finance major and Data Science minor student at Rutgers University passionate about making creative solutions to finanical problems!&rdquo;
-                    </p>
-                </div>
-
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 text-white font-semibold text-sm hover:opacity-95 transition-opacity flex items-center gap-2 shadow-lg shadow-brand-500/20">
-                        View Projects <i class="fa-solid fa-arrow-down text-xs"></i>
-                    </a>
-                    <a href="#experience" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-sm border border-slate-800 transition-colors">
-                        View Experience
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-900">
-            <div class="mb-8">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-                    <i class="fa-solid fa-graduation-cap text-brand-400 text-xl"></i>
-                    Education
-                </h2>
-            </div>
-
-            <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 relative">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Rutgers University</h3>
-                        <p class="text-brand-400 text-sm font-medium">Bachelor of Science in Finance and Minor in Data Science</p>
+                <div class="hero-content">
+                    <h1>Heer Shah</h1>
+                    <div class="hero-subtitle">Finance Major & Data Science Scholar at Rutgers University</div>
+                    
+                    <!-- Personal Statement Requirement -->
+                    <div class="personal-statement">
+                        A highly driven Finance student and Data Science minor leveraging quantitative analysis, programming, and strategic market research to drive impactful financial and organizational decision-making.
                     </div>
-                    <div class="text-left sm:text-right text-xs font-mono text-slate-400">
-                        <p class="text-slate-200 font-semibold">New Brunswick, NJ</p>
-                        <p>Expected Graduation: May 2029</p>
-                    </div>
-                </div>
 
-                <div class="flex flex-wrap items-center gap-3 mb-6">
-                    <span class="px-3 py-1 rounded-full bg-accent-500/10 text-accent-400 border border-accent-500/20 text-xs font-mono font-bold">
-                        GPA: 3.95 / 4.0
-                    </span>
-                    <span class="px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 text-xs font-mono font-bold">
-                        Dean’s List
-                    </span>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Relevant Coursework</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">Microeconomics & Macroeconomics</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">Statistics for Business</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">Supply Chain</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">Marketing</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-300">Management</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-900">
-            <div class="mb-8">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-                    <i class="fa-solid fa-briefcase text-accent-400 text-xl"></i>
-                    Professional Experience
-                </h2>
-            </div>
-
-            <div class="space-y-6">
-                <!-- Role 1 -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Social Media Director</h3>
-                            <p class="text-brand-400 text-sm font-medium">Creation 4 Cessation</p>
-                        </div>
-                        <span class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800 w-fit">June 2024 — Present</span>
-                    </div>
-                    <ul class="space-y-2 text-slate-300 text-sm list-disc list-inside leading-relaxed">
-                        <li>Led end-to-end project management of campaigns using Agile planning strategies at a nonprofit organization promoting nicotine cessation for youth.</li>
-                        <li>Directed market research and leveraged data analytics in Excel to evaluate campaign performance for events with 100+ attendees and fundraising events that raised $3,500, combining artistic expression with community engagement.</li>
-                        <li>Maintained professional relationships with sponsors and partners through effective public relations and contract management, ensuring smooth collaboration and compliance with organizational policies.</li>
-                    </ul>
-                </div>
-
-                <!-- Role 2 -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Marketing Intern</h3>
-                            <p class="text-brand-400 text-sm font-medium">Mind4Youth Internship Program</p>
-                        </div>
-                        <span class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800 w-fit">September 2024 — June 2025</span>
-                    </div>
-                    <ul class="space-y-2 text-slate-300 text-sm list-disc list-inside leading-relaxed">
-                        <li>Conducted market research using data analytics to support marketing strategies and executive decision-making while collaborating closely with industry professionals and cross-functional stakeholders.</li>
-                        <li>Created engaging content, coordinated outreach efforts, and led fundraising initiatives that raised $1,000, boosting awareness and increasing community engagement for the organization.</li>
-                    </ul>
-                </div>
-
-                <!-- Role 3 -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Math and PI/EL Tutor</h3>
-                            <p class="text-brand-400 text-sm font-medium">Edison Kumon</p>
-                        </div>
-                        <span class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800 w-fit">November 2023 — May 2025</span>
-                    </div>
-                    <ul class="space-y-2 text-slate-300 text-sm list-disc list-inside leading-relaxed">
-                        <li>Tutored over 50 K–12 PI/EL and math students, strengthening performance through effective presentation skills.</li>
-                        <li>Delivered high-quality customer service to families through clear communication and progress reporting.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="leadership" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-900">
-            <div class="mb-8">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-                    <i class="fa-solid fa-users-gear text-sky-400 text-xl"></i>
-                    Leadership Experience
-                </h2>
-            </div>
-
-            <div class="space-y-6">
-                <!-- Leadership 1 -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Director of Finance</h3>
-                            <p class="text-brand-400 text-sm font-medium">Hand A Chance Board</p>
-                        </div>
-                        <span class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800 w-fit">May 2024 — Present</span>
-                    </div>
-                    <ul class="space-y-2 text-slate-300 text-sm list-disc list-inside leading-relaxed">
-                        <li>Contributed to a nonprofit organization dedicated to supporting small businesses in rural communities by assisting with strategic outreach and data-informed decision-making.</li>
-                        <li>Raised over $10,000 in donations to support small business owners directly, coordinating fundraising efforts and promoting campaigns to maximize participation.</li>
-                        <li>Developed and implemented innovative approaches to engage community members and companies, ensuring fundraising initiatives met nonprofit compliance requirements and quality benchmarks.</li>
-                    </ul>
-                </div>
-
-                <!-- Leadership 2 -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Business Mentor</h3>
-                            <p class="text-brand-400 text-sm font-medium">Rutgers University Business for Youth</p>
-                        </div>
-                        <span class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800 w-fit">September 2025 — Present</span>
-                    </div>
-                    <ul class="space-y-2 text-slate-300 text-sm list-disc list-inside leading-relaxed">
-                        <li>Mentored high school students interested in business, offering guidance, insight, and support to aid students with their academic and professional growth.</li>
-                        <li>Organized and contributed to events that promote leadership, collaboration, and career readiness while strengthening the Rutgers Business School community through networking initiatives.</li>
-                    </ul>
-                </div>
-
-                <!-- Leadership 3 -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Outreach Team Manager</h3>
-                            <p class="text-brand-400 text-sm font-medium">Robotics Team Quadra</p>
-                        </div>
-                        <span class="text-xs font-mono text-slate-400 bg-slate-900 px-3 py-1 rounded-lg border border-slate-800 w-fit">September 2023 — June 2025</span>
-                    </div>
-                    <ul class="space-y-2 text-slate-300 text-sm list-disc list-inside leading-relaxed">
-                        <li>Successfully reached out to multiple organizations and secured $4,000 in grants to support team initiatives and competition participation.</li>
-                        <li>Achieved top competitive rankings, including first place in New Jersey, demonstrating high-level performance and strategic execution.</li>
-                        <li>Oversaw cross-functional team coordination and planning efforts, ensuring effective use of grant funding and consistent preparation for high-level competitions.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-900">
-            <div class="mb-8">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-                    <i class="fa-solid fa-microchip text-brand-400 text-xl"></i>
-                    Skills & Activities
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Technical Skills -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800">
-                    <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold mb-4">
-                        <i class="fa-solid fa-code text-lg"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3">Technical Skills</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Java</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Python</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">SQL</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">pandas</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">NumPy</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Data Analytics</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Radius</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Shadow</span>
-                    </div>
-                </div>
-
-                <!-- Professional Skills -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800">
-                    <div class="w-10 h-10 rounded-xl bg-accent-500/10 text-accent-400 flex items-center justify-center font-bold mb-4">
-                        <i class="fa-solid fa-user-check text-lg"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3">Professional Skills</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Quality Assurance</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Compliance Awareness</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Cross-Functional Collaboration</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Communication</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Interpersonal Skills</span>
-                    </div>
-                </div>
-
-                <!-- Activities -->
-                <div class="glass-card p-6 rounded-2xl border border-slate-800">
-                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold mb-4">
-                        <i class="fa-solid fa-award text-lg"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3">Activities & Affiliations</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200">National Residence Hall Honorary</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200">Teen Medic Talks (Research Analyst)</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200">KABHOOM Robotics (Instructor & Marketing Director)</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200">Women in Business</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200">Spikeball Team</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200">Intramural Volleyball</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-slate-900">
-            <div class="mb-8">
-                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-                    <i class="fa-solid fa-diagram-project text-accent-400 text-xl"></i>
-                    Projects
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">Interactive web application projects with direct links to code repositories.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- Project 1: Todo List Application -->
-                <div class="glass-card rounded-2xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-slate-700 transition-all">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 border border-brand-500/20">FULL-STACK NODE.JS</span>
-                            <a href="https://github.com/heershah11/todo-list" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors" title="GitHub Repository">
-                                <i class="fa-brands fa-github text-lg"></i>
-                            </a>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Todo List Application</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                            Full-stack tasks management application built with Node.js & Express on the backend and modern HTML/CSS/JS on the frontend, featuring REST API routing and modular project structure.
-                        </p>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">Node.js</span>
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">Express</span>
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">HTML5</span>
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">CSS3</span>
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0 border-t border-slate-800/50 flex items-center gap-3">
-                        <button onclick="openTodoAppModal()" class="flex-1 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs transition-colors text-center flex items-center justify-center gap-2 shadow-md shadow-brand-500/20">
-                            <i class="fa-solid fa-play text-xs"></i> Live Demo
-                        </button>
-                        <a href="https://github.com/heershah11/todo-list" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-800 transition-colors flex items-center gap-1.5">
-                            <i class="fa-brands fa-github"></i> Code Link
+                    <div class="contact-pills">
+                        <a href="tel:2014230574" class="contact-pill">
+                            <i class="fa-solid fa-phone"></i> 201-423-0574
                         </a>
+                        <a href="mailto:heershah0211@gmail.com" class="contact-pill">
+                            <i class="fa-solid fa-envelope"></i> heershah0211@gmail.com
+                        </a>
+                        <a href="https://linkedin.com/in/heershah11" target="_blank" class="contact-pill">
+                            <i class="fa-brands fa-linkedin"></i> linkedin.com/in/heershah11
+                        </a>
+                        <span class="contact-pill">
+                            <i class="fa-solid fa-location-dot"></i> New Brunswick, NJ
+                        </span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+            <div class="card edu-card" style="margin-bottom: 3rem;">
+                <div class="edu-header">
+                    <div>
+                        <div class="degree-title">Bachelor of Science in Finance, Minor in Data Science</div>
+                        <div class="institution">Rutgers University – New Brunswick</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="gpa-badge">GPA: 3.95 / 4.0</span>
+                        <div class="duration-text" style="margin-top: 0.25rem;">Expected Graduation: May 2029</div>
+                    </div>
+                </div>
+                <div>
+                    <strong style="font-size: 0.85rem; color: var(--text-muted);">Honors & Honors Societies:</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-main);"> Dean’s List</span>
+                </div>
+                <div>
+                    <strong style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Relevant Coursework:</strong>
+                    <div class="coursework-tags">
+                        <span class="tag">Microeconomics</span>
+                        <span class="tag">Macroeconomics</span>
+                        <span class="tag">Supply Chain</span>
+                        <span class="tag">Marketing</span>
+                        <span class="tag">Management</span>
+                        <span class="tag">Statistics for Business</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional & Leadership Experience -->
+        <section id="experience">
+            <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experience & Leadership</h2>
+            
+            <div class="section-grid">
+                <!-- Professional Experience Column -->
+                <div>
+                    <h3 style="font-size: 1.2rem; color: var(--secondary); margin-bottom: 1rem;">Professional Experience</h3>
+                    
+                    <div class="card timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="role-title">Social Media Director</div>
+                                <div class="company-name">Creation 4 Cessation</div>
+                            </div>
+                            <div class="duration-text">June 2024 — Present</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Led end-to-end project management of campaigns using Agile planning strategies at a nonprofit promoting nicotine cessation for youth.</li>
+                            <li>Directed market research and leveraged data analytics in Excel to evaluate campaign performance for events with 100+ attendees and fundraising events raising $3,500.</li>
+                            <li>Maintained professional relationships with sponsors and partners through effective public relations and contract management.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="role-title">Marketing Intern</div>
+                                <div class="company-name">Mind4Youth Internship Program</div>
+                            </div>
+                            <div class="duration-text">Sept 2024 — June 2025</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Conducted market research using data analytics to support marketing strategies and executive decision-making.</li>
+                            <li>Created engaging content and led fundraising initiatives that raised $1,000, boosting community engagement.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="role-title">Math and PI/EL Tutor</div>
+                                <div class="company-name">Edison Kumon</div>
+                            </div>
+                            <div class="duration-text">Nov 2023 — May 2025</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Tutored over 50 K–12 PI/EL and math students, strengthening academic performance through presentation skills.</li>
+                            <li>Delivered high-quality customer service to families through clear communication and progress reporting.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Leadership Experience Column -->
+                <div>
+                    <h3 style="font-size: 1.2rem; color: var(--primary-light); margin-bottom: 1rem;">Leadership Experience</h3>
+
+                    <div class="card timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="role-title">Director of Finance</div>
+                                <div class="company-name">Hand A Chance Board</div>
+                            </div>
+                            <div class="duration-text">May 2024 — Present</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Contributed to a nonprofit supporting small businesses in rural communities through strategic outreach and data-informed decisions.</li>
+                            <li>Raised over $10,000 in donations to support small business owners directly, coordinating targeted fundraising campaigns.</li>
+                            <li>Implemented community engagement approaches, ensuring campaigns met nonprofit compliance and quality benchmarks.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="role-title">Business Mentor</div>
+                                <div class="company-name">Rutgers Business for Youth</div>
+                            </div>
+                            <div class="duration-text">Sept 2025 — Present</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Mentored high school students interested in business, offering insight and support to aid academic and career growth.</li>
+                            <li>Organized events promoting leadership, collaboration, and career readiness within the Rutgers Business School community.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="role-title">Outreach Team Manager</div>
+                                <div class="company-name">Robotics Team Quadra</div>
+                            </div>
+                            <div class="duration-text">Sept 2023 — June 2025</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Secured $4,000 in grants to support team initiatives and competition participation.</li>
+                            <li>Achieved top competitive rankings, including first place in New Jersey, demonstrating high-level strategic execution.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Showcase Section -->
+        <section id="projects">
+            <h2 class="section-title"><i class="fa-solid fa-code"></i> Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <!-- Project 1: Todo List Application -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <div class="project-title">Todo List Application</div>
+                            <div class="project-links">
+                                <a href="https://github.com/heershah11/todo-list" target="_blank" class="project-btn" title="GitHub Repository">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="project-desc">
+                            A modular task management application with a Node.js/Express backend API and clean JavaScript frontend. Organizes tasks with complete CRUD operations and structured directory routes.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-pill">Node.js</span>
+                            <span class="tech-pill">Express</span>
+                            <span class="tech-pill">JavaScript</span>
+                            <span class="tech-pill">HTML/CSS</span>
+                        </div>
+                    </div>
+                    <button class="demo-trigger-btn" onclick="openModal('todoModal')">
+                        <i class="fa-solid fa-play"></i> Launch Interactive Demo
+                    </button>
                 </div>
 
                 <!-- Project 2: Speed Typing Test -->
-                <div class="glass-card rounded-2xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-slate-700 transition-all">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 border border-accent-500/20">VANILLA JAVASCRIPT</span>
-                            <a href="https://github.com/heershah11/speed-typing" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors" title="GitHub Repository">
-                                <i class="fa-brands fa-github text-lg"></i>
-                            </a>
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <div class="project-title">Speed Typing Test</div>
+                            <div class="project-links">
+                                <a href="https://github.com/heershah11/speed-typing" target="_blank" class="project-btn" title="GitHub Repository">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Speed Typing Test</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                            Lightweight 30-second interactive typing speed benchmark built with pure HTML/CSS/JS without build steps or external dependencies. Features dynamic word generation, real-time WPM & accuracy tracking, and local best score storage.
+                        <p class="project-desc">
+                            A lightweight, zero-dependency 30-second speed typing assessment tool. Tracks live Words Per Minute (WPM), accuracy, and stores high scores using client-side localStorage.
                         </p>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">Vanilla JS</span>
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">LocalStorage API</span>
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">HTML5</span>
-                            <span class="text-xs font-mono text-slate-300 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">CSS3</span>
+                        <div class="project-tech">
+                            <span class="tech-pill">JavaScript (ES6+)</span>
+                            <span class="tech-pill">localStorage API</span>
+                            <span class="tech-pill">DOM Analytics</span>
                         </div>
                     </div>
-                    <div class="p-6 pt-0 border-t border-slate-800/50 flex items-center gap-3">
-                        <button onclick="openTypingAppModal()" class="flex-1 py-2.5 rounded-xl bg-accent-600 hover:bg-accent-500 text-white font-semibold text-xs transition-colors text-center flex items-center justify-center gap-2 shadow-md shadow-accent-500/20">
-                            <i class="fa-solid fa-play text-xs"></i> Live Demo
-                        </button>
-                        <a href="https://github.com/heershah11/speed-typing" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-800 transition-colors flex items-center gap-1.5">
-                            <i class="fa-brands fa-github"></i> Code Link
-                        </a>
-                    </div>
+                    <button class="demo-trigger-btn" onclick="openModal('typingModal')">
+                        <i class="fa-solid fa-gauge-high"></i> Launch Interactive Demo
+                    </button>
                 </div>
-
             </div>
         </section>
-    </main>
 
-    <footer id="contact" class="border-t border-slate-900 bg-slate-950/80 py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div>
-                    <span class="text-xl font-bold text-white">Heer Shah</span>
-                    <p class="text-xs text-slate-400 mt-1">Rutgers University | Finance & Data Science</p>
-                </div>
-
-                <div class="flex items-center gap-4 text-slate-400">
-                    <a href="https://linkedin.com/in/heershah11" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:text-brand-400 flex items-center justify-center transition-colors" title="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:heershah0211@gmail.com" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:text-accent-400 flex items-center justify-center transition-colors" title="Email">
-                        <i class="fa-solid fa-envelope"></i>
-                    </a>
-                    <a href="tel:2014230574" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:text-sky-400 flex items-center justify-center transition-colors" title="Call">
-                        <i class="fa-solid fa-phone"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="mt-8 pt-6 border-t border-slate-900/60 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-                <p>&copy; 2026 Heer Shah. All rights reserved.</p>
-                <p>Rutgers Business School</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modal: Todo List Application Live Demo -->
-    <div id="todo-app-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="glass-card max-w-xl w-full rounded-2xl border border-slate-800 p-6 shadow-2xl relative animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('todo-app-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+        <!-- Technical & Professional Skills -->
+        <section id="skills">
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Skills & Extracurricular Activities</h2>
             
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center">
-                    <i class="fa-solid fa-list-check"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-white">Todo List Application</h3>
-                    <p class="text-xs text-slate-400">Node.js / Express Client Demo</p>
+            <div class="card">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fa-solid fa-laptop-code"></i> Technical Skills</h3>
+                        <div class="skills-pills">
+                            <span class="skill-pill"><i class="fa-solid fa-code"></i> Java</span>
+                            <span class="skill-pill"><i class="fa-brands fa-python"></i> Python</span>
+                            <span class="skill-pill"><i class="fa-solid fa-database"></i> SQL</span>
+                            <span class="skill-pill"><i class="fa-solid fa-table"></i> pandas</span>
+                            <span class="skill-pill"><i class="fa-solid fa-calculator"></i> NumPy</span>
+                            <span class="skill-pill"><i class="fa-solid fa-chart-line"></i> Data Analytics</span>
+                            <span class="skill-pill"><i class="fa-solid fa-bullseye"></i> Radius</span>
+                            <span class="skill-pill"><i class="fa-solid fa-eye"></i> Shadow</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><i class="fa-solid fa-user-check"></i> Professional Competencies</h3>
+                        <div class="skills-pills">
+                            <span class="skill-pill"><i class="fa-solid fa-check-double"></i> Quality Assurance</span>
+                            <span class="skill-pill"><i class="fa-solid fa-shield-halved"></i> Compliance Awareness</span>
+                            <span class="skill-pill"><i class="fa-solid fa-users-gear"></i> Cross-Functional Collaboration</span>
+                            <span class="skill-pill"><i class="fa-solid fa-comments"></i> Communication</span>
+                            <span class="skill-pill"><i class="fa-solid fa-handshake"></i> Interpersonal Skills</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><i class="fa-solid fa-people-group"></i> Activities & Involvement</h3>
+                        <div class="skills-pills">
+                            <span class="skill-pill"><i class="fa-solid fa-award"></i> National Residence Hall Honorary</span>
+                            <span class="skill-pill"><i class="fa-solid fa-flask"></i> Teen Medic Talks (Research Analyst)</span>
+                            <span class="skill-pill"><i class="fa-solid fa-robot"></i> KABHOOM Robotics (Instructor & Marketing Dir.)</span>
+                            <span class="skill-pill"><i class="fa-solid fa-building-user"></i> Women in Business</span>
+                            <span class="skill-pill"><i class="fa-solid fa-volleyball"></i> Spikeball Team</span>
+                            <span class="skill-pill"><i class="fa-solid fa-trophy"></i> Intramural Volleyball</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Embedded Interactive Todo UI -->
-            <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 mb-4">
-                <form id="todo-form" class="flex gap-2 mb-4" onsubmit="addTodoTask(event)">
-                    <input type="text" id="todo-input" placeholder="Add a new task..." class="flex-1 px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm text-slate-100 focus:outline-none focus:border-brand-500" required>
-                    <button type="submit" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-semibold transition-colors">Add</button>
-                </form>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Heer Shah. Built with HTML, CSS, and JavaScript.</p>
+        </footer>
+    </div>
 
-                <ul id="todo-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                    <!-- Dynamic tasks -->
+    <!-- MODAL 1: Interactive Todo App -->
+    <div id="todoModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('todoModal')"><i class="fa-solid fa-xmark"></i></button>
+            <h3 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-list-check" style="color: var(--primary-light);"></i> Todo List Application Demo</h3>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem;">Simulating client-server interactions built with Express & JS frontend.</p>
+            
+            <div class="todo-app-container">
+                <div class="todo-input-group">
+                    <input type="text" id="newTodoInput" class="todo-input" placeholder="Add a new financial modeling task...">
+                    <button class="todo-add-btn" onclick="addTodo()">Add Task</button>
+                </div>
+                <ul id="todoList" class="todo-list">
+                    <li class="todo-item">
+                        <span>Review Creation 4 Cessation Excel analytics</span>
+                        <div class="todo-actions">
+                            <button class="todo-action-btn" onclick="toggleTodo(this)"><i class="fa-solid fa-check"></i></button>
+                            <button class="todo-action-btn" onclick="deleteTodo(this)"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </li>
+                    <li class="todo-item">
+                        <span>Prepare Hand A Chance monthly budget report</span>
+                        <div class="todo-actions">
+                            <button class="todo-action-btn" onclick="toggleTodo(this)"><i class="fa-solid fa-check"></i></button>
+                            <button class="todo-action-btn" onclick="deleteTodo(this)"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </li>
                 </ul>
             </div>
-
-            <div class="flex justify-between items-center text-xs text-slate-400">
-                <span id="todo-counter">0 task(s) remaining</span>
-                <button onclick="closeModal('todo-app-modal')" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold">Close Demo</button>
-            </div>
         </div>
     </div>
 
-    <!-- Modal: Speed Typing Application Live Demo -->
-    <div id="typing-app-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="glass-card max-w-xl w-full rounded-2xl border border-slate-800 p-6 shadow-2xl relative animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('typing-app-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+    <!-- MODAL 2: Interactive Speed Typing App -->
+    <div id="typingModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('typingModal')"><i class="fa-solid fa-xmark"></i></button>
+            <h3 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-gauge-high" style="color: var(--secondary);"></i> Speed Typing Test Demo</h3>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1rem;">Type as many words as possible in 30 seconds. (Best Score saved in localStorage)</p>
             
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-8 h-8 rounded-lg bg-accent-500/20 text-accent-400 flex items-center justify-center">
-                    <i class="fa-solid fa-stopwatch"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-white">Speed Typing Test</h3>
-                    <p class="text-xs text-slate-400">30-Second Speed & Accuracy Test</p>
-                </div>
-            </div>
-
-            <!-- Embedded Speed Typing Test -->
-            <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-800 mb-4">
-                <div class="grid grid-cols-4 gap-2 mb-4 text-center">
-                    <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
-                        <p class="text-[10px] text-slate-400 uppercase font-mono">Time</p>
-                        <p id="typing-timer" class="text-lg font-bold text-amber-400 font-mono">30s</p>
+            <div class="typing-app-container">
+                <div class="typing-stats">
+                    <div class="stat-box">
+                        <div id="timeVal" class="val">30s</div>
+                        <div class="lbl">Time</div>
                     </div>
-                    <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
-                        <p class="text-[10px] text-slate-400 uppercase font-mono">WPM</p>
-                        <p id="typing-wpm" class="text-lg font-bold text-accent-400 font-mono">0</p>
+                    <div class="stat-box">
+                        <div id="wpmVal" class="val">0</div>
+                        <div class="lbl">WPM</div>
                     </div>
-                    <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
-                        <p class="text-[10px] text-slate-400 uppercase font-mono">Accuracy</p>
-                        <p id="typing-accuracy" class="text-lg font-bold text-brand-400 font-mono">100%</p>
-                    </div>
-                    <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
-                        <p class="text-[10px] text-slate-400 uppercase font-mono">Best Score</p>
-                        <p id="typing-best" class="text-lg font-bold text-purple-400 font-mono">0 WPM</p>
+                    <div class="stat-box">
+                        <div id="highScoreVal" class="val">0</div>
+                        <div class="lbl">Best Score</div>
                     </div>
                 </div>
 
-                <div id="word-box" class="p-4 bg-slate-950 rounded-lg border border-slate-800 mb-4 font-mono text-sm leading-relaxed max-h-32 overflow-y-auto select-none tracking-wide">
-                    <!-- Dynamic Words -->
-                </div>
-
-                <input type="text" id="typing-input" placeholder="Start typing here when test starts..." class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-sm font-mono text-white focus:outline-none focus:border-accent-500" disabled>
-
-                <div class="flex gap-2 mt-4">
-                    <button id="start-typing-btn" onclick="startTypingTest()" class="flex-1 py-2 bg-accent-600 hover:bg-accent-500 text-white rounded-lg text-xs font-semibold transition-colors">Start Test</button>
-                    <button onclick="resetTypingTest()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold transition-colors">Reset</button>
-                </div>
-            </div>
-
-            <div class="flex justify-end">
-                <button onclick="closeModal('typing-app-modal')" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-semibold">Close Demo</button>
+                <div id="wordDisplay" class="word-display">finance data science analytics python sql pandas rutgers valuation regression yield model stock portfolio</div>
+                
+                <input type="text" id="typingInput" class="typing-input" placeholder="Start typing here to trigger timer..." autocomplete="off">
+                <button class="restart-btn" onclick="resetTypingTest()"><i class="fa-solid fa-rotate-right"></i> Reset Test</button>
             </div>
         </div>
     </div>
 
+    <!-- JavaScript Logic -->
     <script>
-        // Navigation menu toggle
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        // Modal Handlers
-        function openTodoAppModal() {
-            document.getElementById('todo-app-modal').classList.remove('hidden');
-            renderTodoList();
-        }
-
-        function openTypingAppModal() {
-            document.getElementById('typing-app-modal').classList.remove('hidden');
-            initTypingGame();
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-            if(id === 'typing-app-modal') resetTypingTest();
-        }
-
-        // ==========================================
-        // PROJECT 1: TODO LIST LOGIC
-        // ==========================================
-        let todos = [
-            { id: 1, text: "Configure Express app entry point (app.js)", completed: true },
-            { id: 2, text: "Build REST API routes for /routes/todos.js", completed: true },
-            { id: 3, text: "Deploy public assets frontend", completed: false }
-        ];
-
-        function renderTodoList() {
-            const listEl = document.getElementById('todo-list');
-            const counterEl = document.getElementById('todo-counter');
-            listEl.innerHTML = '';
-
-            todos.forEach(todo => {
-                const li = document.createElement('li');
-                li.className = `flex items-center justify-between p-2.5 rounded-lg border transition-all ${
-                    todo.completed 
-                    ? 'bg-slate-950/50 border-slate-800/50 text-slate-500 line-through' 
-                    : 'bg-slate-950 border-slate-800 text-slate-200'
-                }`;
-
-                li.innerHTML = `
-                    <div class="flex items-center gap-2 cursor-pointer" onclick="toggleTodo(${todo.id})">
-                        <i class="fa-regular ${todo.completed ? 'fa-square-check text-accent-400' : 'fa-square text-slate-600'}"></i>
-                        <span class="text-xs font-mono">${todo.text}</span>
-                    </div>
-                    <button onclick="deleteTodo(${todo.id})" class="text-slate-500 hover:text-rose-400 text-xs px-2 py-1">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                `;
-                listEl.appendChild(li);
-            });
-
-            const remaining = todos.filter(t => !t.completed).length;
-            counterEl.innerText = `${remaining} task(s) remaining`;
-        }
-
-        function addTodoTask(e) {
-            e.preventDefault();
-            const input = document.getElementById('todo-input');
-            const text = input.value.trim();
-            if (text) {
-                todos.push({ id: Date.now(), text: text, completed: false });
-                input.value = '';
-                renderTodoList();
+        // Modal Control Functions
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            if(id === 'typingModal') {
+                initTypingTest();
             }
         }
 
-        function toggleTodo(id) {
-            todos = todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t);
-            renderTodoList();
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
         }
 
-        function deleteTodo(id) {
-            todos = todos.filter(t => t.id !== id);
-            renderTodoList();
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+            }
         }
 
-        // ==========================================
-        // PROJECT 2: SPEED TYPING TEST LOGIC
-        // ==========================================
-        const WORDS_BANK = [
-            "finance", "data", "science", "rutgers", "analytics", "python", 
-            "java", "pandas", "numpy", "marketing", "leadership", "management", 
-            "statistics", "business", "community", "outreach", "strategy"
-        ];
-        const DURATION = 30;
-        let timeLeft = DURATION;
+        // --- TODO LIST LOGIC ---
+        function addTodo() {
+            const input = document.getElementById('newTodoInput');
+            const text = input.value.trim();
+            if(!text) return;
+
+            const ul = document.getElementById('todoList');
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            li.innerHTML = `
+                <span>${text}</span>
+                <div class="todo-actions">
+                    <button class="todo-action-btn" onclick="toggleTodo(this)"><i class="fa-solid fa-check"></i></button>
+                    <button class="todo-action-btn" onclick="deleteTodo(this)"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+            ul.appendChild(li);
+            input.value = '';
+        }
+
+        function toggleTodo(btn) {
+            const item = btn.closest('.todo-item');
+            item.classList.toggle('completed');
+        }
+
+        function deleteTodo(btn) {
+            const item = btn.closest('.todo-item');
+            item.remove();
+        }
+
+        // --- SPEED TYPING TEST LOGIC ---
+        const sampleWords = ["finance", "data", "science", "analytics", "python", "sql", "pandas", "rutgers", "valuation", "regression", "yield", "model", "stock", "portfolio", "agile", "compliance", "leadership", "budget"];
+        let timer = 30;
         let timerInterval = null;
-        let activeWords = [];
-        let wordIndex = 0;
+        let isStarted = false;
         let totalTypedChars = 0;
-        let correctTypedChars = 0;
-        let isTypingStarted = false;
 
-        function initTypingGame() {
-            const best = localStorage.getItem('heer_typing_best') || 0;
-            document.getElementById('typing-best').innerText = `${best} WPM`;
+        function initTypingTest() {
+            const savedScore = localStorage.getItem('speed_typing_best') || 0;
+            document.getElementById('highScoreVal').innerText = savedScore;
             resetTypingTest();
         }
 
         function resetTypingTest() {
             clearInterval(timerInterval);
-            timeLeft = DURATION;
-            isTypingStarted = false;
-            wordIndex = 0;
+            timer = 30;
+            isStarted = false;
             totalTypedChars = 0;
-            correctTypedChars = 0;
-
-            document.getElementById('typing-timer').innerText = `${timeLeft}s`;
-            document.getElementById('typing-wpm').innerText = '0';
-            document.getElementById('typing-accuracy').innerText = '100%';
-
-            const inputEl = document.getElementById('typing-input');
-            inputEl.value = '';
-            inputEl.disabled = true;
-
-            const startBtn = document.getElementById('start-typing-btn');
-            startBtn.disabled = false;
-            startBtn.innerText = 'Start Test';
-
-            activeWords = [...WORDS_BANK].sort(() => Math.random() - 0.5);
-            renderWords();
+            document.getElementById('timeVal').innerText = '30s';
+            document.getElementById('wpmVal').innerText = '0';
+            const input = document.getElementById('typingInput');
+            input.value = '';
+            input.disabled = false;
+            
+            // Shuffle sample words
+            const shuffled = [...sampleWords].sort(() => Math.random() - 0.5);
+            document.getElementById('wordDisplay').innerText = shuffled.join(' ');
         }
 
-        function renderWords() {
-            const box = document.getElementById('word-box');
-            box.innerHTML = activeWords.map((word, idx) => {
-                let colorClass = "text-slate-400";
-                if (idx < wordIndex) colorClass = "text-accent-400 font-semibold";
-                else if (idx === wordIndex) colorClass = "text-brand-400 underline font-bold bg-brand-500/10 px-1 rounded";
-                return `<span class="${colorClass}">${word}</span>`;
-            }).join(' ');
-        }
-
-        function startTypingTest() {
-            if (isTypingStarted) return;
-            isTypingStarted = true;
-
-            const inputEl = document.getElementById('typing-input');
-            inputEl.disabled = false;
-            inputEl.focus();
-
-            const startBtn = document.getElementById('start-typing-btn');
-            startBtn.disabled = true;
-
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                document.getElementById('typing-timer').innerText = `${timeLeft}s`;
-                calculateMetrics();
-
-                if (timeLeft <= 0) {
-                    endTypingTest();
-                }
-            }, 1000);
-        }
-
-        document.getElementById('typing-input').addEventListener('input', (e) => {
-            if (!isTypingStarted) return;
-
-            const currentVal = e.target.value.trim();
-            const currentWord = activeWords[wordIndex];
-
-            if (e.data === ' ' || e.inputType === 'insertText' && e.target.value.endsWith(' ')) {
-                if (currentVal) {
-                    totalTypedChars += currentVal.length + 1;
-                    if (currentVal === currentWord) {
-                        correctTypedChars += currentWord.length + 1;
+        document.getElementById('typingInput').addEventListener('input', function(e) {
+            if(!isStarted && this.value.length > 0) {
+                isStarted = true;
+                timerInterval = setInterval(() => {
+                    timer--;
+                    document.getElementById('timeVal').innerText = timer + 's';
+                    
+                    if(timer <= 0) {
+                        clearInterval(timerInterval);
+                        this.disabled = true;
+                        calculateFinalWPM();
                     }
-                    wordIndex++;
-                    e.target.value = '';
-                    if (wordIndex >= activeWords.length) {
-                        activeWords = activeWords.concat([...WORDS_BANK].sort(() => Math.random() - 0.5));
-                    }
-                    renderWords();
-                }
+                }, 1000);
             }
-            calculateMetrics();
         });
 
-        function calculateMetrics() {
-            const timeElapsed = DURATION - timeLeft;
-            if (timeElapsed <= 0) return;
+        function calculateFinalWPM() {
+            const textTyped = document.getElementById('typingInput').value.trim();
+            const wordsCount = textTyped ? textTyped.split(/\s+/).length : 0;
+            const wpm = Math.round((wordsCount / 0.5)); // 30 sec test = 0.5 min
+            document.getElementById('wpmVal').innerText = wpm;
 
-            const minutes = timeElapsed / 60;
-            const currentInputLength = document.getElementById('typing-input').value.length;
-            const approxWords = (correctTypedChars + currentInputLength) / 5;
-            const wpm = Math.round(approxWords / minutes) || 0;
-
-            const totalCharsAttempted = totalTypedChars + currentInputLength;
-            const accuracy = totalCharsAttempted > 0 
-                ? Math.min(100, Math.round(((correctTypedChars + currentInputLength) / totalCharsAttempted) * 100)) 
-                : 100;
-
-            document.getElementById('typing-wpm').innerText = wpm;
-            document.getElementById('typing-accuracy').innerText = `${accuracy}%`;
-        }
-
-        function endTypingTest() {
-            clearInterval(timerInterval);
-            document.getElementById('typing-input').disabled = true;
-            document.getElementById('typing-timer').innerText = '0s';
-
-            const finalWpm = parseInt(document.getElementById('typing-wpm').innerText) || 0;
-            const previousBest = parseInt(localStorage.getItem('heer_typing_best')) || 0;
-
-            if (finalWpm > previousBest) {
-                localStorage.setItem('heer_typing_best', finalWpm);
-                document.getElementById('typing-best').innerText = `${finalWpm} WPM`;
+            const currentHigh = parseInt(localStorage.getItem('speed_typing_best') || 0);
+            if(wpm > currentHigh) {
+                localStorage.setItem('speed_typing_best', wpm);
+                document.getElementById('highScoreVal').innerText = wpm;
             }
         }
     </script>
