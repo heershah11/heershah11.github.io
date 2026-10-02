@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heer Shah | Finance & Data Science</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Chart.js for live quantitative demo previews -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        accent: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-glow {
+            box-shadow: 0 0 30px -5px rgba(56, 189, 248, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-brand-500/20 transition-transform group-hover:scale-105">
+                        <i class="fa-solid fa-chart-line text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg tracking-tight text-white">Heer Shah<span class="text-brand-400">.</span></span>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#about" class="text-slate-300 hover:text-brand-400 transition-colors">Personal Statement</a>
+                    <a href="#skills" class="text-slate-300 hover:text-brand-400 transition-colors">Skills</a>
+                    <a href="#projects" class="text-slate-300 hover:text-brand-400 transition-colors">Projects</a>
+                    <a href="#contact" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 hover:border-slate-600 transition-all text-xs font-semibold tracking-wide">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav border-b border-slate-800 px-4 pt-2 pb-4 space-y-3">
+            <a href="#about" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Personal Statement</a>
+            <a href="#skills" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Skills</a>
+            <a href="#projects" class="block text-slate-300 hover:text-brand-400 text-sm font-medium py-1">Projects</a>
+            <a href="#contact" class="block text-brand-400 font-medium text-sm py-1">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16">
+        <section id="about" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="relative z-10 max-w-4xl">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono mb-8">
+                    <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+                    <span>Finance & Data Science Student</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-8 leading-snug">
+                    Hello, I'm <span class="gradient-text">Heer Shah</span>.
+                </h1>
+
+                <!-- REQUIREMENT 1: Personal Statement (Clear, impactful 1-sentence introduction) -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800/80 gradient-glow relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <p class="text-xl sm:text-2xl text-slate-100 font-medium leading-relaxed">
+                        &ldquo;Driven Finance and Data Science student specializing in quantitative analysis, financial modeling, and data analytics to bridge modern data technology with actionable market intelligence.&rdquo;
+                    </p>
+
+                    <div class="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-400 font-mono">
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap text-brand-400"></i> Business School Scholar</span>
+                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-microchip text-accent-400"></i> Analytics & Fintech Focused</span>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 text-white font-semibold text-sm hover:opacity-95 transition-opacity flex items-center gap-2 shadow-lg shadow-brand-500/20">
+                        View Projects <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="#skills" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-sm border border-slate-800 transition-colors">
+                        Technical Stack
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-900">
+            <div class="mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
+                    <i class="fa-solid fa-layer-group text-brand-400 text-xl"></i>
+                    Skills & Competencies
+                </h2>
+                <p class="text-slate-400 text-sm mt-2">Highlighted technical languages, analytical frameworks, and financial expertise.</p>
+            </div>
+
+            <!-- REQUIREMENT 2: Highlighted list of technical/professional skills -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Quantitative & Data Analytics -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-code text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Data Science & Code</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200"><i class="fa-brands fa-python text-amber-400 mr-1.5"></i>Python</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200"><i class="fa-solid fa-database text-brand-400 mr-1.5"></i>SQL</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200"><i class="fa-solid fa-chart-simple text-blue-400 mr-1.5"></i>R</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Pandas & NumPy</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Scikit-Learn</span>
+                    </div>
+                </div>
+
+                <!-- Financial Analysis & Modeling -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-accent-500/10 text-accent-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-calculator text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Finance & Analytics</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Financial Modeling</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">DCF Valuation</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Portfolio Theory</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Risk Analysis (VaR)</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Excel / VBA</span>
+                    </div>
+                </div>
+
+                <!-- Visualization & Tools -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fa-solid fa-chart-pie text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Tools & Visualization</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Tableau</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">PowerBI</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Git / GitHub</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Jupyter Notebooks</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">Bloomberg Terminal</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-900">
+            <div class="mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
+                    <i class="fa-solid fa-diagram-project text-accent-400 text-xl"></i>
+                    Projects
+                </h2>
+                <p class="text-slate-400 text-sm mt-2">Showcase of quantitative finance, machine learning, and data analytics work.</p>
+            </div>
+
+            <!-- REQUIREMENT 3: Showcase of 3 relevant projects -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-slate-700 transition-all">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-brand-500/10 text-brand-400 border border-brand-500/20">FINTECH / QUANT</span>
+                            <i class="fa-solid fa-arrow-trend-up text-slate-600 group-hover:text-brand-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Portfolio Optimization Engine</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Constructed a Markowitz Mean-Variance Efficient Frontier optimizer in Python to compute optimal asset allocations, Sharpe ratios, and Monte Carlo risk simulations.
+                        </p>
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 mb-6">
+                            <canvas id="chart-project-1" class="w-full h-28"></canvas>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Python</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">NumPy</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">SciPy</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Matplotlib</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 border-t border-slate-800/50 flex items-center gap-3">
+                        <button onclick="openProjectModal('Portfolio Optimization Engine', 'Built an interactive quantitative model using Markowitz Modern Portfolio Theory. Implemented quadratic programming with SciPy Optimize to maximize Sharpe ratios and plot efficient frontiers across S&P 500 constituents.')" class="flex-1 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-slate-200 border border-slate-800 transition-colors text-center">
+                            Live Preview
+                        </button>
+                        <a href="https://github.com" target="_blank" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-colors" title="View Code">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-slate-700 transition-all">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-accent-500/10 text-accent-400 border border-accent-500/20">NLP / DATA SCIENCE</span>
+                            <i class="fa-solid fa-bullseye text-slate-600 group-hover:text-accent-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Market Sentiment Analyzer</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Developed a Natural Language Processing pipeline analyzing financial news feeds and SEC 10-K filings to quantify market sentiment and predict short-term stock volatility.
+                        </p>
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 mb-6 flex items-center justify-center h-28">
+                            <div class="text-center">
+                                <span class="text-2xl font-bold font-mono text-accent-400">+78.4%</span>
+                                <p class="text-[11px] text-slate-500 mt-1">Sentiment Correlation Index</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Python</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">NLTK / VADER</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Pandas</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">BeautifulSoup</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 border-t border-slate-800/50 flex items-center gap-3">
+                        <button onclick="openProjectModal('Market Sentiment Analyzer', 'Scraped financial news headlines and SEC filings to run sentiment classification algorithms. Linked sentiment indices to equity trading volume spikes using time-series regression models.')" class="flex-1 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-slate-200 border border-slate-800 transition-colors text-center">
+                            Live Preview
+                        </button>
+                        <a href="https://github.com" target="_blank" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-colors" title="View Code">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl border border-slate-800 flex flex-col justify-between overflow-hidden group hover:border-slate-700 transition-all">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">ALGORITHMIC TRADING</span>
+                            <i class="fa-solid fa-code-compare text-slate-600 group-hover:text-sky-400 transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Algorithmic Backtester</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Engineered an automated quantitative strategy backtesting framework evaluating moving average crossover and mean-reversion models against historical equity data.
+                        </p>
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 mb-6">
+                            <canvas id="chart-project-3" class="w-full h-28"></canvas>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Python</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Backtrader</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">yfinance</span>
+                            <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Seaborn</span>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 border-t border-slate-800/50 flex items-center gap-3">
+                        <button onclick="openProjectModal('Algorithmic Backtester', 'Built an event-driven backtesting environment accounting for transaction costs and market slippage. Evaluated Sharpe Ratios, Maximum Drawdowns, and Alpha generation relative to benchmark indices.')" class="flex-1 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-slate-200 border border-slate-800 transition-colors text-center">
+                            Live Preview
+                        </button>
+                        <a href="https://github.com" target="_blank" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-colors" title="View Code">
+                            <i class="fa-brands fa-github text-base"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="border-t border-slate-900 bg-slate-950/80 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-lg font-bold text-white">Heer Shah</span>
+                    <p class="text-xs text-slate-400 mt-1">Finance & Data Science | Quantitative Analytics</p>
+                </div>
+
+                <div class="flex items-center gap-4 text-slate-400">
+                    <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:text-brand-400 flex items-center justify-center transition-colors" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:text-white flex items-center justify-center transition-colors" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <button onclick="copyEmail()" class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:text-accent-400 flex items-center justify-center transition-colors relative group" title="Copy Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-900/60 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Heer Shah. All rights reserved.</p>
+                <p>Designed with Tailwind CSS & JavaScript</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-card max-w-lg w-full rounded-2xl border border-slate-800 p-6 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 id="modal-title" class="text-xl font-bold text-white mb-3">Project Title</h3>
+            <p id="modal-body" class="text-slate-300 text-sm leading-relaxed mb-6">Project details...</p>
+            <div class="flex justify-end gap-3">
+                <button onclick="closeProjectModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700">Close</button>
+                <a href="https://github.com" target="_blank" class="px-4 py-2 rounded-lg bg-brand-600 text-white text-xs font-semibold hover:bg-brand-500">View Source Code</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Copy Email helper function
+        function copyEmail() {
+            const email = "heer.shah@business.edu";
+            const dummy = document.createElement("input");
+            document.body.appendChild(dummy);
+            dummy.value = email;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            
+            const message = document.createElement("div");
+            message.className = "fixed bottom-5 right-5 glass-card border border-accent-500/30 text-accent-400 px-4 py-2 rounded-xl text-xs font-mono shadow-xl z-50";
+            message.innerText = "Email copied to clipboard!";
+            document.body.appendChild(message);
+            setTimeout(() => message.remove(), 2500);
+        }
+
+        // Modal triggers
+        function openProjectModal(title, description) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = description;
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Initialize Chart.js micro charts
+        window.onload = function() {
+            // Project 1 Chart (Efficient Frontier Curve)
+            const ctx1 = document.getElementById('chart-project-1');
+            if (ctx1) {
+                new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: ['0%', '5%', '10%', '15%', '20%', '25%'],
+                        datasets: [{
+                            label: 'Efficient Frontier',
+                            data: [4, 7, 11, 14, 16, 17],
+                            borderColor: '#38bdf8',
+                            backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+            }
+
+            // Project 3 Chart (Cumulative Returns Strategy vs Benchmark)
+            const ctx3 = document.getElementById('chart-project-3');
+            if (ctx3) {
+                new Chart(ctx3, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [
+                            {
+                                label: 'Strategy',
+                                data: [100, 105, 103, 112, 118, 125],
+                                borderColor: '#34d399',
+                                borderWidth: 2,
+                                pointRadius: 0
+                            },
+                            {
+                                label: 'Benchmark',
+                                data: [100, 102, 101, 105, 107, 110],
+                                borderColor: '#64748b',
+                                borderWidth: 1,
+                                borderDash: [3, 3],
+                                pointRadius: 0
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { display: false },
+                            y: { display: false }
+                        }
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>
